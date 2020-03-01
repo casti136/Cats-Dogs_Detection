@@ -46,11 +46,19 @@ train_data = datatrain()
 X,Y = separate_data(train_data) #X is features (image), Y is label (0 or 1)
 
 #SAVE the data points
-with open('DataX.csv', "w") as f:
-  thewriter = csv.writer(f)
-  for i in range(0,len(X),1):
-    thewriter.writerow([X[i]])
-with open('DataY.csv', "w") as f:
-  thewriter = csv.writer(f)
-  for i in range(0,len(Y),1):
-    thewriter.writerow([Y[i]])
+#with open('DataX.csv', "w") as f:
+ # thewriter = csv.writer(f)
+#  for i in range(0,len(X),1):
+ #   thewriter.writerow([X[i]])
+#with open('DataY.csv', "w") as f:
+ #thewriter = csv.writer(f)
+#  for i in range(0,len(Y),1):
+ #thewriter.writerow([Y[i]])
+
+X = np.array(X).reshape(-1,50,50,1) # change 1 to 3 if coloured
+pickle_out = open("X.pickle","wb")
+pickle.dump(X, pickle_out)
+pickle_out.close
+pickle_out = open("Y.pickle","wb")
+pickle.dump(Y, pickle_out)
+pickle_out.close
